@@ -3,9 +3,9 @@
 Consola operativa en React + TypeScript para la hackathon *Pizza Protocol*.
 
 ## Integrantes
-- A — <nombre> — <código>
-- B — <nombre> — <código>
-- C — <nombre> — <código>
+- A — Adrian Rojas — <código>
+- B — Sebastián Perez — 202510248
+- C — Bricet Rodrigo — 202510213
 
 ## Stack
 React 18 · TypeScript estricto · Vite · React Router · Tailwind CSS · Fetch API.
