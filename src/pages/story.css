@@ -1,0 +1,44 @@
+/* ===== Checkpoint 5: estilos exclusivos del scrollytelling ===== */
+/* Aislado aquí para que solo tú (integrante C) edites este archivo. */
+
+/* Fallback: las etapas son visibles por defecto si no hay scroll-driven. */
+.story-stage { opacity: 1; }
+
+/* CSS Scroll-driven Animations cuando hay soporte. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .story-stage {
+      opacity: 0.35;
+      animation: stage-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+@keyframes stage-reveal {
+  from { opacity: 0.2; transform: translateY(24px); }
+  to   { opacity: 1;   transform: translateY(0); }
+}
+
+/* Barra de progreso movida por scroll, con fallback por width en JS. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress-bar {
+      transform-origin: 0 50%;
+      animation: grow-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+@keyframes grow-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Respeto a prefers-reduced-motion: nada de movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .story-stage,
+  .scroll-progress-bar { animation: none !important; transition: none !important; }
+  .story-stage { opacity: 1 !important; transform: none !important; }
+}
+
+/* Transición de vista resumen <-> historia. */
+@keyframes vt-fade-in { from { opacity: 0; } to { opacity: 1; } }
+::view-transition-new(root) { animation: vt-fade-in 220ms ease both; }
